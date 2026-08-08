@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABIL ANANDAN | CODER • GRAPHICS DESIGNER • BRANDING ENTHUSIAST</title>
+  <meta name="description" content="Official portfolio of Abil Anandan — Coder, Graphic Designer, and Branding Enthusiast. Creating high-impact digital experiences and iconic brand identities.">
+  <meta name="keywords" content="Abil Anandan, Abil Anandan portfolio, Abil Anandan coder, Abil Anandan graphic designer, Abil Anandan branding, software developer, graphic design, brand strategist">
+  <meta name="author" content="Abil Anandan">
+  <link rel="canonical" href="https://byluckycat.github.io/abilanandan.github.io/">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Abil Anandan — Coder, Graphic Designer & Branding Enthusiast">
+  <meta property="og:description" content="Official portfolio of Abil Anandan. Creating high-impact digital experiences, web apps, graphic design, and brand identity systems.">
+  <meta property="og:type" content="profile">
+  <meta property="og:url" content="https://byluckycat.github.io/abilanandan.github.io/">
+  <meta property="og:image" content="https://byluckycat.github.io/abilanandan.github.io/assets/profile.jpg">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abil Anandan | Official Portfolio">
+  <meta name="twitter:description" content="Coder, Graphic Designer & Branding Enthusiast. Explore selected works and brand identity systems.">
+  <meta name="twitter:image" content="https://byluckycat.github.io/abilanandan.github.io/assets/profile.jpg">
+
+  <!-- Google Person Schema Structured Data for Search Ranking -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abil Anandan",
+    "alternateName": "abil.anandan",
+    "url": "https://byluckycat.github.io/abilanandan.github.io/",
+    "image": "https://byluckycat.github.io/abilanandan.github.io/assets/profile.jpg",
+    "jobTitle": "Coder, Graphic Designer & Branding Enthusiast",
+    "sameAs": [
+      "https://www.instagram.com/abil.anandan/",
+      "https://www.behance.net/abilanandan",
+      "https://www.flickr.com/photos/199570219@N02/",
+      "https://github.com/byluckycat",
+      "https://www.linkedin.com/in/abil-anandan/",
+      "https://www.reddit.com/user/MuchAcanthisitta8516/"
+    ]
+  }
+  </script>
+  
+  <!-- Google Fonts: Space Grotesk for bold uppercase headings, Plus Jakarta Sans for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Three.js for 3D Scroll Animations & 3D Text -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FontLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/geometries/TextGeometry.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Abstract & 3D Layer -->
+  <div class="bg-wrapper">
+    <canvas id="bg3d"></canvas>
+    <div class="bg-overlay"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-box">A</span>
+        <span class="logo-text">ABIL ANANDAN</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#about" class="nav-link">ABOUT</a>
+        <a href="#skills" class="nav-link">SKILLS</a>
+        <a href="#works" class="nav-link">WORKS</a>
+        <a href="#brand-lab" class="nav-link">BRAND LAB</a>
+        <a href="#contact" class="nav-link">CONTACT</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/abil.anandan/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="display: inline-flex; align-items: center; gap: 10px;">
+          <i class="fa-brands fa-instagram" style="font-size: 1.25rem; color: #ffffff; filter: drop-shadow(0 0 4px rgba(255,255,255,0.5));"></i>
+          <span>GET IN TOUCH</span>
+        </a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">CODER • GRAPHIC DESIGNER • BRANDING ENTHUSIAST</span>
+          </div>
+          
+          <h1 class="hero-title">
+            BUILDING DIGITAL EXCELLENCE THROUGH <span class="highlight-orange">CODE & DESIGN</span>
+          </h1>
+          
+          <p class="hero-description">
+            I fuse robust software engineering with striking graphic design and strategic brand architecture to craft unforgettable digital identities.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#works" class="btn btn-primary">
+              <span>EXPLORE WORKS</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#brand-lab" class="btn btn-secondary">
+              <span>VIEW BRAND LAB</span>
+              <i class="fa-solid fa-flask"></i>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-num" data-target="5">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">YEARS EXPERIENCE</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="40">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">BRAND IDENTITIES</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-num" data-target="80">0</span><span class="stat-plus">+</span>
+              <span class="stat-label">CODE REPOSITORIES</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-profile-wrap">
+          <div class="profile-card-3d">
+            <div class="profile-img-box">
+              <img src="./assets/profile.jpg" alt="Abil Anandan Profile Picture" class="profile-img">
+            </div>
+            <div class="profile-badge">
+              <span class="profile-name">ABIL ANANDAN</span>
+              <span class="profile-role">CODER & BRAND STRATEGIST</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 01. PHILOSOPHY & DISCIPLINE</span>
+        <h2 class="section-title">WHO IS ABIL ANANDAN</h2>
+        <p class="section-subtitle bold-caps">BRIDGING THE GAP BETWEEN ENGINEERING PRECISION AND VISUAL MASTERY.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card main-bio-card">
+          <h3 class="card-title">THE TRI-DISCIPLINARY ADVANTAGE</h3>
+          <p>
+            In today's digital landscape, code without design is invisible, and design without code is inert. Branding bridges both into a cohesive story.
+          </p>
+          <p>
+            As a <strong>Coder</strong>, <strong>Graphic Designer</strong>, and <strong>Branding Enthusiast</strong>, I take projects from high-level visual concept to pixel-perfect code deployment — maintaining complete creative control and technical integrity throughout the process.
+          </p>
+          <div class="bio-highlights">
+            <div class="highlight-item">
+              <i class="fa-solid fa-code icon-orange"></i>
+              <div>
+                <h4>CLEAN CODE ARCHITECTURE</h4>
+                <p>Performant, scalable, and modern frontend logic.</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-palette icon-orange"></i>
+              <div>
+                <h4>VISUAL GRAPHIC DESIGN</h4>
+                <p>High-impact graphics, editorial layouts, and UI/UX.</p>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <i class="fa-solid fa-bullhorn icon-orange"></i>
+              <div>
+                <h4>STRATEGIC BRANDING</h4>
+                <p>Distinctive logos, typography, and visual systems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-pillars">
+          <div class="pillar-card">
+            <div class="pillar-num">01</div>
+            <h4 class="pillar-title">CODING & DEVELOPMENT</h4>
+            <p>HTML5, Modern JavaScript, Responsive CSS Systems, API Integration, and Web Performance Optimization.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-num">02</div>
+            <h4 class="pillar-title">GRAPHIC DESIGN</h4>
+            <p>UI/UX Design, Visual Hierarchy, Vector Illustrations, Editorial Layouts, Poster Design, and Motion Assets.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-num">03</div>
+            <h4 class="pillar-title">BRANDING & IDENTITY</h4>
+            <p>Brand Strategy, Logo Identity Systems, Brand Guidelines, Color Systems, and Typography Curation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Matrix Section -->
+  <section id="skills" class="section bg-darker">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 02. TECHNICAL & CREATIVE CAPABILITIES</span>
+        <h2 class="section-title">SKILL MATRIX</h2>
+        <p class="section-subtitle">A balanced breakdown of development, graphic, and brand identity toolsets.</p>
+      </div>
+
+      <div class="filter-tabs" id="skillTabs">
+        <button class="tab-btn active" data-filter="all">ALL SKILLS</button>
+        <button class="tab-btn" data-filter="code">DEVELOPMENT</button>
+        <button class="tab-btn" data-filter="design">GRAPHICS & UI</button>
+        <button class="tab-btn" data-filter="brand">BRANDING</button>
+      </div>
+
+      <div class="skills-grid" id="skillsGrid">
+        <!-- Skill 1 -->
+        <div class="skill-card" data-category="code">
+          <div class="skill-head">
+            <span class="skill-name">HTML5 / CSS3 / MODERN JS</span>
+            <span class="skill-pct">95%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 95%;"></div>
+          </div>
+          <span class="skill-desc">Semantic HTML, Modular CSS Architecture, ES6+ JavaScript</span>
+        </div>
+
+        <!-- Skill 2 -->
+        <div class="skill-card" data-category="design">
+          <div class="skill-head">
+            <span class="skill-name">UI/UX & PROTOTYPING</span>
+            <span class="skill-pct">92%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 92%;"></div>
+          </div>
+          <span class="skill-desc">User Journey Mapping, Figma Wireframing, High-Fidelity Prototypes</span>
+        </div>
+
+        <!-- Skill 3 -->
+        <div class="skill-card" data-category="brand">
+          <div class="skill-head">
+            <span class="skill-name">BRAND IDENTITY SYSTEMS</span>
+            <span class="skill-pct">90%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 90%;"></div>
+          </div>
+          <span class="skill-desc">Logo Design, Brand Guidelines, Color Theory, Visual Standards</span>
+        </div>
+
+        <!-- Skill 4 -->
+        <div class="skill-card" data-category="code">
+          <div class="skill-head">
+            <span class="skill-name">RESPONSIVE WEB DEVELOPMENT</span>
+            <span class="skill-pct">96%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 96%;"></div>
+          </div>
+          <span class="skill-desc">Mobile-First Layouts, Flexbox, Grid, Cross-Browser Testing</span>
+        </div>
+
+        <!-- Skill 5 -->
+        <div class="skill-card" data-category="design">
+          <div class="skill-head">
+            <span class="skill-name">GRAPHIC POSTERS & TYPOGRAPHY</span>
+            <span class="skill-pct">94%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 94%;"></div>
+          </div>
+          <span class="skill-desc">Brutalist Posters, Editorial Design, Font Pairings, Layout Math</span>
+        </div>
+
+        <!-- Skill 6 -->
+        <div class="skill-card" data-category="brand">
+          <div class="skill-head">
+            <span class="skill-name">BRAND POSITIONING & STRATEGY</span>
+            <span class="skill-pct">88%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 88%;"></div>
+          </div>
+          <span class="skill-desc">Market Positioning, Brand Voice, Product Design Tokens</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Works Section -->
+  <section id="works" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 03. SELECTED PORTFOLIO</span>
+        <h2 class="section-title">FEATURED WORKS</h2>
+        <p class="section-subtitle">Real-world executions combining code, visual design, and brand systems.</p>
+      </div>
+
+      <div class="filter-tabs" id="workTabs">
+        <button class="tab-btn active" data-work-filter="all">ALL PROJECTS</button>
+        <button class="tab-btn" data-work-filter="branding">BRANDING</button>
+        <button class="tab-btn" data-work-filter="coding">CODING</button>
+        <button class="tab-btn" data-work-filter="graphics">GRAPHICS</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <!-- Project 1: Branding -->
+        <div class="portfolio-card" data-work-cat="branding">
+          <div class="card-image-wrap">
+            <img src="./assets/branding.jpg" alt="AETHER Brand Identity Systems" loading="lazy">
+            <div class="card-overlay">
+              <span class="category-badge">BRANDING</span>
+              <button class="btn-modal-open" data-project="1">EXPLORE CASE STUDY</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-project-title">AETHER BRAND IDENTITY & GUIDELINES</h3>
+            <p class="card-project-desc">Complete visual identity system, stationery design, logo suite, and color token documentation for a high-tech brand.</p>
+            <div class="card-tags">
+              <span>BRAND IDENTITY</span>
+              <span>LOGO SYSTEM</span>
+              <span>STATIONERY</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Coding -->
+        <div class="portfolio-card" data-work-cat="coding">
+          <div class="card-image-wrap">
+            <img src="./assets/coding.jpg" alt="NIGHTWATCH Dashboard Application" loading="lazy">
+            <div class="card-overlay">
+              <span class="category-badge">CODING</span>
+              <a href="https://github.com/byluckycat" target="_blank" rel="noopener noreferrer" class="btn-modal-open" style="display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-brands fa-github"></i>
+                <span>VISIT GITHUB PROFILE</span>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-project-title">NIGHTWATCH CYBER MONITOR DASHBOARD</h3>
+            <p class="card-project-desc">High-performance dark theme web application featuring real-time node analytics, dark UI widgets, and custom code modules.</p>
+            <div class="card-tags">
+              <span>GITHUB</span>
+              <span>JAVASCRIPT</span>
+              <span>DARK UI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Graphics -->
+        <div class="portfolio-card" data-work-cat="graphics">
+          <div class="card-image-wrap">
+            <img src="./assets/graphics.jpg" alt="Behance Graphic Design Portfolio" loading="lazy">
+            <div class="card-overlay">
+              <span class="category-badge">GRAPHICS</span>
+              <a href="https://www.behance.net/abilanandan" target="_blank" rel="noopener noreferrer" class="btn-modal-open" style="display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-brands fa-behance"></i>
+                <span>VISIT BEHANCE PORTFOLIO</span>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-project-title">GRAPHIC DESIGN PORTFOLIO ON BEHANCE</h3>
+            <p class="card-project-desc">Explore my complete showcase of graphic design projects, brutalist posters, editorial layouts, and visual artwork live on Behance.</p>
+            <div class="card-tags">
+              <span>BEHANCE</span>
+              <span>GRAPHIC DESIGN</span>
+              <span>VISUAL ART</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 4: Album Cover Models & Packages -->
+        <div class="portfolio-card" data-work-cat="graphics">
+          <div class="card-image-wrap">
+            <img src="./assets/album_cover.jpg" alt="Album Cover Models & Packages Showcase" loading="lazy">
+            <div class="card-overlay">
+              <span class="category-badge">GRAPHICS & PACKAGING</span>
+              <a href="https://www.flickr.com/photos/199570219@N02/" target="_blank" rel="noopener noreferrer" class="btn-modal-open" style="display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fa-brands fa-flickr"></i>
+                <span>VISIT FLICKR GALLERY</span>
+              </a>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3 class="card-project-title">ALBUM COVER MODELS AND PACKAGES</h3>
+            <p class="card-project-desc">Custom photobook albums, premium photo packaging systems, professional photo editing, and creative album art direction.</p>
+            <div class="card-tags">
+              <span>PHOTOBOOKS</span>
+              <span>PACKAGING</span>
+              <span>FLICKR</span>
+              <span>PHOTO EDITING</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Brand Lab Section -->
+  <section id="brand-lab" class="section bg-darker">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 04. EXPERIMENTAL PLAYGROUND</span>
+        <h2 class="section-title">BRAND IDENTITY LAB</h2>
+        <p class="section-subtitle">An interactive showcase of the signature Black & Orange design system.</p>
+      </div>
+
+      <div class="brand-lab-box">
+        <div class="lab-block">
+          <h3 class="lab-title"><i class="fa-solid fa-palette icon-orange"></i> COLOR PALETTE SYSTEM</h3>
+          <p class="lab-desc">Click any color swatch to copy its HEX value directly to your clipboard.</p>
+          <div class="color-swatches">
+            <div class="swatch" data-hex="#08080A" style="background: #08080A;">
+              <span class="swatch-label">OBSIDIAN BLACK</span>
+              <span class="swatch-hex">#08080A</span>
+            </div>
+            <div class="swatch" data-hex="#FF5500" style="background: #FF5500;">
+              <span class="swatch-label" style="color: #000;">ELECTRIC ORANGE</span>
+              <span class="swatch-hex" style="color: #000;">#FF5500</span>
+            </div>
+            <div class="swatch" data-hex="#18181C" style="background: #18181C;">
+              <span class="swatch-label">DARK QUARTZ</span>
+              <span class="swatch-hex">#18181C</span>
+            </div>
+            <div class="swatch" data-hex="#FFFFFF" style="background: #FFFFFF;">
+              <span class="swatch-label" style="color: #000;">CRISP WHITE</span>
+              <span class="swatch-hex" style="color: #000;">#FFFFFF</span>
+            </div>
+          </div>
+          <div id="copyToast" class="copy-toast">COPIED TO CLIPBOARD!</div>
+        </div>
+
+        <div class="lab-block margin-top-lg">
+          <h3 class="lab-title"><i class="fa-solid fa-font icon-orange"></i> TYPOGRAPHY SPECIMEN TESTER</h3>
+          <p class="lab-desc">Live uppercase typography tester powered by Space Grotesk.</p>
+          <div class="type-tester">
+            <input type="text" id="typeInput" value="ABIL ANANDAN — CODER & BRAND DESIGNER" class="type-input" placeholder="Type custom heading text...">
+            <div id="typePreview" class="type-preview">ABIL ANANDAN — CODER & BRAND DESIGNER</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">// 05. INITIATE COLLABORATION</span>
+        <h2 class="section-title">GET IN TOUCH</h2>
+        <p class="section-subtitle">Have a coding project, graphic design brief, or brand identity task? Let's build something remarkable.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card">
+          <h3 class="card-title">DIRECT CONTACT</h3>
+          <p>Ready to bring high impact to your brand or web app? Reach out anytime.</p>
+          
+          <div class="contact-methods">
+            <div class="method-item">
+              <i class="fa-solid fa-envelope icon-orange"></i>
+              <div>
+                <span class="method-label">EMAIL ME</span>
+                <a href="mailto:abilsea4@gmail.com" class="method-val">abilsea4@gmail.com</a>
+              </div>
+            </div>
+            <div class="method-item">
+              <i class="fa-solid fa-location-dot icon-orange"></i>
+              <div>
+                <span class="method-label">LOCATION</span>
+                <span class="method-val">GLOBAL / REMOTE</span>
+              </div>
+            </div>
+            <div class="method-item">
+              <i class="fa-solid fa-globe icon-orange"></i>
+              <div>
+                <span class="method-label">AVAILABILITY</span>
+                <span class="method-val highlight-orange">OPEN FOR NEW PROJECTS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.instagram.com/abil.anandan/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.behance.net/abilanandan" target="_blank" rel="noopener noreferrer" class="social-btn" title="Behance"><i class="fa-brands fa-behance"></i></a>
+            <a href="https://www.flickr.com/photos/199570219@N02/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Flickr"><i class="fa-brands fa-flickr"></i></a>
+            <a href="https://github.com/byluckycat" target="_blank" rel="noopener noreferrer" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/abil-anandan/" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.reddit.com/user/MuchAcanthisitta8516/" target="_blank" rel="noopener noreferrer" class="social-btn" title="Reddit"><i class="fa-brands fa-reddit"></i></a>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contactForm" onsubmit="event.preventDefault(); handleFormSubmit();">
+            <div class="form-group">
+              <label for="name">YOUR NAME *</label>
+              <input type="text" id="name" required placeholder="e.g. Alex Morgan">
+            </div>
+
+            <div class="form-group">
+              <label for="email">YOUR EMAIL *</label>
+              <input type="email" id="email" required placeholder="alex@company.com">
+            </div>
+
+            <div class="form-group">
+              <label for="service">SERVICE NEEDED *</label>
+              <select id="service" required>
+                <option value="" disabled selected>SELECT A SERVICE</option>
+                <option value="coding">FULL STACK CODING / WEB APP</option>
+                <option value="graphics">GRAPHIC & UI/UX DESIGN</option>
+                <option value="branding">BRAND IDENTITY & GUIDELINES</option>
+                <option value="full">ALL-IN-ONE (CODE + DESIGN + BRAND)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">PROJECT DETAILS *</label>
+              <textarea id="message" rows="4" required placeholder="Tell me about your goals, timeline, and budget..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>SEND MESSAGE</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+            <div id="formFeedback" class="form-feedback"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <span class="logo-box">A</span>
+        <span class="logo-text">ABIL ANANDAN</span>
+      </div>
+      <p class="footer-copy">© 2026 ABIL ANANDAN. CODER • GRAPHICS DESIGNER • BRANDING ENTHUSIAST.</p>
+      <a href="#hero" class="back-to-top" title="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+      </a>
+    </div>
+  </footer>
+
+  <!-- Project Case Study Modal -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
