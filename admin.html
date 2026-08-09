@@ -359,12 +359,9 @@
         <div class="admin-card-header">
           <h3 class="admin-card-title">
             <i class="fa-solid fa-envelope"></i>
-            INCOMING CLIENT MESSAGES & INQUIRIES
+            INCOMING REAL CLIENT MESSAGES & INQUIRIES
           </h3>
-          <div style="display: flex; gap: 10px;">
-            <button id="btnRestoreDemoMsgs" class="btn-reply" style="font-size: 0.75rem;">
-              <i class="fa-solid fa-rotate-left"></i> RESTORE SAMPLE MESSAGES
-            </button>
+          <div>
             <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
               <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
             </button>
@@ -446,32 +443,7 @@
   <!-- Admin Interactive JavaScript Engine -->
   <script>
     // Initial Data State with LocalStorage Persistence
-    const defaultInquiries = [
-      {
-        id: 'msg_1',
-        name: 'Alex Morgan',
-        email: 'alex@brandstudio.com',
-        service: 'BRAND IDENTITY & GUIDELINES',
-        message: 'Looking for a complete brand identity refresh with obsidian black and electric orange color tokens. Need vector logo suite and brand book.',
-        date: 'AUG 08, 2026'
-      },
-      {
-        id: 'msg_2',
-        name: 'Devin Thorne',
-        email: 'devin@cybernode.io',
-        service: 'FULL STACK CODING / WEB APP',
-        message: 'Need a high-performance dark theme cyber monitor dashboard with 3D WebGL animations and real-time network node charts.',
-        date: 'AUG 07, 2026'
-      },
-      {
-        id: 'msg_3',
-        name: 'Sarah Lin',
-        email: 'sarah@musiclabel.org',
-        service: 'PHOTOBOOK & ALBUM COVER PACKAGING',
-        message: 'Need vinyl album cover design and photobook packaging models. Please review our Flickr showcase requirements.',
-        date: 'AUG 05, 2026'
-      }
-    ];
+    const defaultInquiries = [];
 
     const defaultProjects = [
       {
@@ -508,13 +480,9 @@
       }
     ];
 
-    // Load state from localStorage or initialize defaults
+    // Load real client inquiries state from localStorage
     let rawInquiries = localStorage.getItem('abil_admin_inquiries');
-    let inquiries = rawInquiries ? JSON.parse(rawInquiries) : null;
-    if (!inquiries || inquiries.length === 0) {
-      inquiries = [...defaultInquiries];
-      localStorage.setItem('abil_admin_inquiries', JSON.stringify(inquiries));
-    }
+    let inquiries = rawInquiries ? JSON.parse(rawInquiries) : [];
 
     let rawProjects = localStorage.getItem('abil_admin_projects');
     let projects = rawProjects ? JSON.parse(rawProjects) : null;
