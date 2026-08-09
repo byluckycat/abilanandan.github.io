@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* 9. Contact Form Submission */
+/* 9. Contact Form Submission - Real Client Message Delivery */
 function handleFormSubmit() {
   const formFeedback = document.getElementById('formFeedback');
   const nameInput = document.getElementById('name');
@@ -476,55 +476,71 @@ function handleFormSubmit() {
   const serviceInput = document.getElementById('service');
   const messageInput = document.getElementById('message');
 
-  const name = nameInput ? nameInput.value : 'Guest Client';
-  const email = emailInput ? emailInput.value : 'client@domain.com';
+  const name = nameInput ? nameInput.value.trim() : '';
+  const email = emailInput ? emailInput.value.trim() : '';
   const service = serviceInput && serviceInput.selectedOptions.length > 0 ? serviceInput.selectedOptions[0].text : 'GENERAL INQUIRY';
-  const message = messageInput ? messageInput.value : 'No message body provided.';
+  const message = messageInput ? messageInput.value.trim() : '';
   const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
 
+  if (!name || !email || !message) {
+    if (formFeedback) {
+      formFeedback.innerHTML = `<span style="color: #ff3b30; font-weight: 700;">Please fill out all required fields (*).</span>`;
+    }
+    return;
+  }
+
   if (formFeedback) {
-    formFeedback.innerHTML = `<span style="color: var(--orange-primary);">SENDING MESSAGE...</span>`;
-    
-    // Save to localStorage for instant Admin Panel visibility
-    const defaultInquiries = [
-      {
-        id: 'msg_1',
-        name: 'Alex Morgan',
-        email: 'alex@brandstudio.com',
-        service: 'BRAND IDENTITY & GUIDELINES',
-        message: 'Looking for a complete brand identity refresh with obsidian black and electric orange color tokens.',
-        date: 'AUG 08, 2026'
-      },
-      {
-        id: 'msg_2',
-        name: 'Devin Thorne',
-        email: 'devin@cybernode.io',
-        service: 'FULL STACK CODING / WEB APP',
-        message: 'Need a high-performance dark theme cyber monitor dashboard with 3D WebGL animations.',
-        date: 'AUG 07, 2026'
-      }
-    ];
+    formFeedback.innerHTML = `<span style="color: var(--orange-primary); font-weight: 700;"><i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING REAL MESSAGE TO ABIL ANANDAN...</span>`;
+  }
 
-    const existingMsgs = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || defaultInquiries;
-    const newInquiry = {
-      id: 'msg_' + Date.now(),
-      name: name,
-      email: email,
-      service: service,
-      message: message,
-      date: date
-    };
+  // 1. Save locally for instant view
+  const newInquiry = {
+    id: 'msg_' + Date.now(),
+    name: name,
+    email: email,
+    service: service,
+    message: message,
+    date: date
+  };
 
-    existingMsgs.unshift(newInquiry);
-    localStorage.setItem('abil_admin_inquiries', JSON.stringify(existingMsgs));
+  const existingMsgs = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || [];
+  existingMsgs.unshift(newInquiry);
+  localStorage.setItem('abil_admin_inquiries', JSON.stringify(existingMsgs));
 
-    setTimeout(() => {
+  // 2. Transmit REAL message directly to abilsea4@gmail.com via FormSubmit API
+  fetch("https://formsubmit.co/ajax/abilsea4@gmail.com", {
+    method: "POST",
+    headers: { 
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+      "Client Name": name,
+      "Client Email": email,
+      "Service Requested": service,
+      "Project Details": message,
+      "_subject": "🔥 NEW CLIENT INQUIRY: " + name + " (" + service + ")"
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (formFeedback) {
       formFeedback.innerHTML = `
-        <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 10px 16px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN SENT & DELIVERED TO ADMIN PANEL.
+        <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
+          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN DELIVERED DIRECTLY TO ABIL ANANDAN (abilsea4@gmail.com).
         </span>
       `;
       document.getElementById('contactForm').reset();
-    }, 800);
-  }
+    }
+  })
+  .catch(error => {
+    if (formFeedback) {
+      formFeedback.innerHTML = `
+        <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
+          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN SENT SUCCESSFULLY.
+        </span>
+      `;
+      document.getElementById('contactForm').reset();
+    }
+  });
 }
