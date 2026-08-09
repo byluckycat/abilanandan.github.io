@@ -1004,11 +1004,21 @@ img {
   gap: 36px;
 }
 
-.contact-info-card, .contact-form-card {
+.contact-info-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 36px;
+}
+
+.contact-form-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(8, 8, 10, 0.72) 0%, rgba(8, 8, 10, 0.88) 100%), url('./assets/orange_flower.jpg') center/cover no-repeat;
+  border: 1px solid var(--orange-primary);
+  box-shadow: 0 12px 45px rgba(255, 85, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 36px;
+  overflow: hidden;
 }
 
 .contact-info-card p {
