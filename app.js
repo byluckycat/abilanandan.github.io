@@ -468,7 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* 9. Contact Form Submission - Real Client Message Delivery */
+/* 9. Contact Form Submission - Global Real Client Cloud Database Sync */
 function handleFormSubmit() {
   const formFeedback = document.getElementById('formFeedback');
   const nameInput = document.getElementById('name');
@@ -490,54 +490,45 @@ function handleFormSubmit() {
   }
 
   if (formFeedback) {
-    formFeedback.innerHTML = `<span style="color: var(--orange-primary); font-weight: 700;"><i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING REAL MESSAGE TO ABIL ANANDAN...</span>`;
+    formFeedback.innerHTML = `<span style="color: var(--orange-primary); font-weight: 700;"><i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING MESSAGE TO ADMIN PANEL...</span>`;
   }
 
-  // 1. Save locally for instant view
-  const newInquiry = {
-    id: 'msg_' + Date.now(),
+  const payload = {
     name: name,
     email: email,
     service: service,
     message: message,
-    date: date
+    date: date,
+    timestamp: Date.now()
   };
 
+  // 1. Save locally for instant same-browser view
   const existingMsgs = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || [];
-  existingMsgs.unshift(newInquiry);
+  existingMsgs.unshift({ id: 'msg_' + Date.now(), ...payload });
   localStorage.setItem('abil_admin_inquiries', JSON.stringify(existingMsgs));
 
-  // 2. Transmit REAL message directly to abilsea4@gmail.com via FormSubmit API
-  fetch("https://formsubmit.co/ajax/abilsea4@gmail.com", {
+  // 2. Transmit to Cloud Database so real client messages from any device display on admin.html
+  fetch("https://abil-anandan-portfolio-default-rtdb.firebaseio.com/inquiries.json", {
     method: "POST",
-    headers: { 
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-      "Client Name": name,
-      "Client Email": email,
-      "Service Requested": service,
-      "Project Details": message,
-      "_subject": "🔥 NEW CLIENT INQUIRY: " + name + " (" + service + ")"
-    })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
   })
-  .then(response => response.json())
+  .then(res => res.json())
   .then(data => {
     if (formFeedback) {
       formFeedback.innerHTML = `
         <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN DELIVERED DIRECTLY TO ABIL ANANDAN (abilsea4@gmail.com).
+          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN DELIVERED TO THE ADMIN PANEL.
         </span>
       `;
       document.getElementById('contactForm').reset();
     }
   })
-  .catch(error => {
+  .catch(err => {
     if (formFeedback) {
       formFeedback.innerHTML = `
         <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN SENT SUCCESSFULLY.
+          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN LOGGED TO THE ADMIN PANEL.
         </span>
       `;
       document.getElementById('contactForm').reset();

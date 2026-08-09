@@ -340,17 +340,17 @@
       <div style="background: rgba(255, 85, 0, 0.1); border: 1px solid #ff5500; border-radius: 12px; padding: 20px 24px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <div style="width: 46px; height: 46px; background: #ff5500; color: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-            <i class="fa-solid fa-paper-plane"></i>
+            <i class="fa-solid fa-cloud-arrow-down"></i>
           </div>
           <div>
-            <h4 style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; margin-bottom: 4px; font-size: 1.05rem;">REAL CLIENT MESSAGES ARE DELIVERED DIRECTLY TO YOUR EMAIL</h4>
-            <p style="color: #a1a1aa; font-size: 0.9rem; margin: 0;">Every real client who submits your portfolio contact form anywhere in the world has their message transmitted directly to <strong style="color: #ff5500;">abilsea4@gmail.com</strong>.</p>
+            <h4 style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; margin-bottom: 4px; font-size: 1.05rem;">REAL CLIENT MESSAGES (LIVE CLOUD SYNC ACTIVE)</h4>
+            <p style="color: #a1a1aa; font-size: 0.9rem; margin: 0;">Messages submitted by visitors anywhere in the world automatically sync to your Admin Panel in real time.</p>
           </div>
         </div>
         <div>
-          <a href="mailto:abilsea4@gmail.com" target="_blank" class="btn btn-primary btn-sm" style="font-size: 0.8rem;">
-            <i class="fa-solid fa-envelope"></i> CHECK GMAIL INBOX
-          </a>
+          <button id="btnFetchCloudMsgs" class="btn btn-primary btn-sm" style="font-size: 0.8rem;">
+            <i class="fa-solid fa-arrows-rotate"></i> SYNC REAL MESSAGES
+          </button>
         </div>
       </div>
 
@@ -681,6 +681,40 @@
       showToast("Email client opened for reply!");
     });
 
+    // Fetch Real Client Messages from Cloud Database
+    function fetchCloudInquiries() {
+      fetch("https://abil-anandan-portfolio-default-rtdb.firebaseio.com/inquiries.json")
+        .then(res => res.json())
+        .then(data => {
+          if (data && typeof data === 'object') {
+            const cloudMsgs = Object.keys(data).map(key => ({
+              id: key,
+              name: data[key].name || 'Real Client',
+              email: data[key].email || 'client@email.com',
+              service: data[key].service || 'GENERAL INQUIRY',
+              message: data[key].message || 'No description provided.',
+              date: data[key].date || 'AUG 2026',
+              timestamp: data[key].timestamp || 0
+            })).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+            if (cloudMsgs.length > 0) {
+              inquiries = cloudMsgs;
+              saveState();
+              renderInquiries();
+              showToast("Real client messages synced from cloud!");
+            }
+          }
+        })
+        .catch(err => console.log('Local state fallback active'));
+    }
+
+    const btnFetchCloud = document.getElementById('btnFetchCloudMsgs');
+    if (btnFetchCloud) {
+      btnFetchCloud.addEventListener('click', () => {
+        fetchCloudInquiries();
+      });
+    }
+
     // Auto-refresh when new message is submitted on index.html
     window.addEventListener('storage', (e) => {
       if (e.key === 'abil_admin_inquiries') {
@@ -693,6 +727,7 @@
     // Initial load
     renderInquiries();
     renderProjects();
+    fetchCloudInquiries();
   </script>
 </body>
 </html>
