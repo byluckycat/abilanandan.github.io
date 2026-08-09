@@ -639,6 +639,15 @@
       showToast("Email client opened for reply!");
     });
 
+    // Auto-refresh when new message is submitted on index.html
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'abil_admin_inquiries') {
+        inquiries = JSON.parse(e.newValue) || [];
+        renderInquiries();
+        showToast("New message received!");
+      }
+    });
+
     // Initial load
     renderInquiries();
     renderProjects();

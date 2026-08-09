@@ -471,18 +471,60 @@ document.addEventListener('DOMContentLoaded', () => {
 /* 9. Contact Form Submission */
 function handleFormSubmit() {
   const formFeedback = document.getElementById('formFeedback');
-  const name = document.getElementById('name').value;
-  
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const serviceInput = document.getElementById('service');
+  const messageInput = document.getElementById('message');
+
+  const name = nameInput ? nameInput.value : 'Guest Client';
+  const email = emailInput ? emailInput.value : 'client@domain.com';
+  const service = serviceInput && serviceInput.selectedOptions.length > 0 ? serviceInput.selectedOptions[0].text : 'GENERAL INQUIRY';
+  const message = messageInput ? messageInput.value : 'No message body provided.';
+  const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+
   if (formFeedback) {
     formFeedback.innerHTML = `<span style="color: var(--orange-primary);">SENDING MESSAGE...</span>`;
     
+    // Save to localStorage for instant Admin Panel visibility
+    const defaultInquiries = [
+      {
+        id: 'msg_1',
+        name: 'Alex Morgan',
+        email: 'alex@brandstudio.com',
+        service: 'BRAND IDENTITY & GUIDELINES',
+        message: 'Looking for a complete brand identity refresh with obsidian black and electric orange color tokens.',
+        date: 'AUG 08, 2026'
+      },
+      {
+        id: 'msg_2',
+        name: 'Devin Thorne',
+        email: 'devin@cybernode.io',
+        service: 'FULL STACK CODING / WEB APP',
+        message: 'Need a high-performance dark theme cyber monitor dashboard with 3D WebGL animations.',
+        date: 'AUG 07, 2026'
+      }
+    ];
+
+    const existingMsgs = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || defaultInquiries;
+    const newInquiry = {
+      id: 'msg_' + Date.now(),
+      name: name,
+      email: email,
+      service: service,
+      message: message,
+      date: date
+    };
+
+    existingMsgs.unshift(newInquiry);
+    localStorage.setItem('abil_admin_inquiries', JSON.stringify(existingMsgs));
+
     setTimeout(() => {
       formFeedback.innerHTML = `
         <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 10px 16px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN SENT SUCCESSFULLY.
+          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN SENT & DELIVERED TO ADMIN PANEL.
         </span>
       `;
       document.getElementById('contactForm').reset();
-    }, 1200);
+    }, 800);
   }
 }
