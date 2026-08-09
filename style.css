@@ -1013,7 +1013,7 @@ img {
 
 .contact-form-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(8, 8, 10, 0.72) 0%, rgba(8, 8, 10, 0.88) 100%), url('./assets/orange_flower.jpg') center/cover no-repeat;
+  background: linear-gradient(180deg, rgba(8, 8, 10, 0.82) 0%, rgba(8, 8, 10, 0.92) 100%), url('./assets/orange_flower.png') center/contain no-repeat #08080a;
   border: 1px solid var(--orange-primary);
   box-shadow: 0 12px 45px rgba(255, 85, 0, 0.3);
   border-radius: var(--radius-md);
