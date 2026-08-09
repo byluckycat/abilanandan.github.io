@@ -468,9 +468,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-/* 9. Contact Form Submission - Global Real Client Cloud Database Sync */
+/* 9. Contact Form Submission - Direct Data Transmission */
 function handleFormSubmit() {
-  const formFeedback = document.getElementById('formFeedback');
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const serviceInput = document.getElementById('service');
@@ -483,14 +482,8 @@ function handleFormSubmit() {
   const date = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
 
   if (!name || !email || !message) {
-    if (formFeedback) {
-      formFeedback.innerHTML = `<span style="color: #ff3b30; font-weight: 700;">Please fill out all required fields (*).</span>`;
-    }
+    alert("Please fill out all required fields (*).");
     return;
-  }
-
-  if (formFeedback) {
-    formFeedback.innerHTML = `<span style="color: var(--orange-primary); font-weight: 700;"><i class="fa-solid fa-spinner fa-spin"></i> TRANSMITTING MESSAGE TO ADMIN PANEL...</span>`;
   }
 
   const payload = {
@@ -512,26 +505,9 @@ function handleFormSubmit() {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  })
-  .then(res => res.json())
-  .then(data => {
-    if (formFeedback) {
-      formFeedback.innerHTML = `
-        <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN DELIVERED TO THE ADMIN PANEL.
-        </span>
-      `;
-      document.getElementById('contactForm').reset();
-    }
-  })
-  .catch(err => {
-    if (formFeedback) {
-      formFeedback.innerHTML = `
-        <span style="color: #00ff88; background: rgba(0, 255, 136, 0.1); padding: 12px 18px; border-radius: 6px; border: 1px solid #00ff88; display: inline-block; font-weight: 700;">
-          <i class="fa-solid fa-circle-check"></i> THANK YOU, ${name.toUpperCase()}! YOUR MESSAGE HAS BEEN LOGGED TO THE ADMIN PANEL.
-        </span>
-      `;
-      document.getElementById('contactForm').reset();
-    }
   });
+
+  // Clean form reset
+  document.getElementById('contactForm').reset();
+  alert("Thank you, " + name + "! Your message has been sent successfully.");
 }

@@ -332,24 +332,6 @@
         </div>
       </div>
 
-      <!-- Real Client Incoming Messages Showcase Banner -->
-      <div style="background: rgba(255, 85, 0, 0.1); border: 1px solid #ff5500; border-radius: 12px; padding: 20px 24px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 16px;">
-          <div style="width: 46px; height: 46px; background: #ff5500; color: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-            <i class="fa-solid fa-inbox"></i>
-          </div>
-          <div>
-            <h4 style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; margin-bottom: 4px; font-size: 1.05rem;">REAL CLIENT INCOMING MESSAGES SHOWCASE</h4>
-            <p style="color: #a1a1aa; font-size: 0.9rem; margin: 0;">Messages submitted by real clients anywhere in the world populate directly into the <strong>INCOMING CLIENT MESSAGE</strong> column below.</p>
-          </div>
-        </div>
-        <div>
-          <button id="btnFetchCloudMsgs" class="btn btn-primary btn-sm" style="font-size: 0.8rem;">
-            <i class="fa-solid fa-arrows-rotate"></i> REFRESH INCOMING MESSAGES
-          </button>
-        </div>
-      </div>
-
       <!-- Section 1: Inquiries Inbox & Messages -->
       <div class="admin-card">
         <div class="admin-card-header">
@@ -357,7 +339,10 @@
             <i class="fa-solid fa-envelope"></i>
             INCOMING REAL CLIENT MESSAGES & INQUIRIES
           </h3>
-          <div>
+          <div style="display: flex; gap: 10px;">
+            <button id="btnFetchCloudMsgs" class="btn-reply" style="font-size: 0.75rem;">
+              <i class="fa-solid fa-arrows-rotate"></i> REFRESH MESSAGES
+            </button>
             <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
               <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
             </button>
