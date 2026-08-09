@@ -1013,9 +1013,9 @@ img {
 
 .contact-form-card {
   position: relative;
-  background: linear-gradient(180deg, rgba(8, 8, 10, 0.82) 0%, rgba(8, 8, 10, 0.92) 100%), url('./assets/orange_flower.png') center/contain no-repeat #08080a;
-  border: 1px solid var(--orange-primary);
-  box-shadow: 0 12px 45px rgba(255, 85, 0, 0.3);
+  background: var(--bg-card);
+  border: 1px solid var(--border-orange);
+  box-shadow: 0 12px 45px rgba(255, 85, 0, 0.25);
   border-radius: var(--radius-md);
   padding: 36px;
   overflow: hidden;

@@ -520,39 +520,12 @@
           </div>
         </div>
 
-        <div class="contact-form-card">
-          <form id="contactForm" onsubmit="event.preventDefault(); handleFormSubmit();">
-            <div class="form-group">
-              <label for="name">YOUR NAME *</label>
-              <input type="text" id="name" required placeholder="Enter your full name">
-            </div>
-
-            <div class="form-group">
-              <label for="email">YOUR EMAIL *</label>
-              <input type="email" id="email" required placeholder="name@example.com">
-            </div>
-
-            <div class="form-group">
-              <label for="service">SERVICE NEEDED *</label>
-              <select id="service" required>
-                <option value="" disabled selected>SELECT A SERVICE</option>
-                <option value="coding">FULL STACK CODING / WEB APP</option>
-                <option value="graphics">GRAPHIC & UI/UX DESIGN</option>
-                <option value="branding">BRAND IDENTITY & GUIDELINES</option>
-                <option value="full">ALL-IN-ONE (CODE + DESIGN + BRAND)</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="message">PROJECT DETAILS *</label>
-              <textarea id="message" rows="4" required placeholder="Write your project details or inquiry here..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>SEND MESSAGE</span>
-              <i class="fa-solid fa-paper-plane"></i>
-            </button>
-          </form>
+        <div class="contact-form-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 480px;">
+          <div class="flower-art-wrap" style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <img src="./assets/orange_flower.png" alt="Abil Anandan Floral Art" style="max-height: 360px; width: auto; filter: drop-shadow(0 10px 30px rgba(255, 85, 0, 0.4)); object-fit: contain; margin-bottom: 20px;">
+            <h4 style="font-family: var(--font-heading); font-size: 1.25rem; color: #ffffff; margin-bottom: 6px;">CREATIVE VISUAL DIRECTION</h4>
+            <p style="color: var(--orange-primary); font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; margin: 0;">ABIL ANANDAN ARTWORK</p>
+          </div>
         </div>
       </div>
     </div>
