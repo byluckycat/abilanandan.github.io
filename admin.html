@@ -336,20 +336,20 @@
         </div>
       </div>
 
-      <!-- Real Message Delivery Banner -->
+      <!-- Real Client Incoming Messages Showcase Banner -->
       <div style="background: rgba(255, 85, 0, 0.1); border: 1px solid #ff5500; border-radius: 12px; padding: 20px 24px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
         <div style="display: flex; align-items: center; gap: 16px;">
           <div style="width: 46px; height: 46px; background: #ff5500; color: #000; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <i class="fa-solid fa-inbox"></i>
           </div>
           <div>
-            <h4 style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; margin-bottom: 4px; font-size: 1.05rem;">REAL CLIENT MESSAGES (LIVE CLOUD SYNC ACTIVE)</h4>
-            <p style="color: #a1a1aa; font-size: 0.9rem; margin: 0;">Messages submitted by visitors anywhere in the world automatically sync to your Admin Panel in real time.</p>
+            <h4 style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; margin-bottom: 4px; font-size: 1.05rem;">REAL CLIENT INCOMING MESSAGES SHOWCASE</h4>
+            <p style="color: #a1a1aa; font-size: 0.9rem; margin: 0;">Messages submitted by real clients anywhere in the world populate directly into the <strong>INCOMING CLIENT MESSAGE</strong> column below.</p>
           </div>
         </div>
         <div>
           <button id="btnFetchCloudMsgs" class="btn btn-primary btn-sm" style="font-size: 0.8rem;">
-            <i class="fa-solid fa-arrows-rotate"></i> SYNC REAL MESSAGES
+            <i class="fa-solid fa-arrows-rotate"></i> REFRESH INCOMING MESSAGES
           </button>
         </div>
       </div>
@@ -363,7 +363,7 @@
           </h3>
           <div style="display: flex; gap: 10px;">
             <button id="btnRestoreDemoMsgs" class="btn-reply" style="font-size: 0.75rem;">
-              <i class="fa-solid fa-rotate-left"></i> RESTORE DEMO MESSAGES
+              <i class="fa-solid fa-rotate-left"></i> RESTORE SAMPLE MESSAGES
             </button>
             <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
               <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
@@ -376,10 +376,10 @@
             <thead>
               <tr>
                 <th>CLIENT NAME</th>
-                <th>EMAIL ADDRESS</th>
+                <th>CLIENT EMAIL</th>
                 <th>SERVICE REQUESTED</th>
-                <th>MESSAGE DETAILS</th>
-                <th>DATE RECEIVED</th>
+                <th style="background: #222232; color: #ff5500; font-size: 0.9rem;">INCOMING CLIENT MESSAGE</th>
+                <th>RECEIVED DATE</th>
                 <th>ACTIONS</th>
               </tr>
             </thead>
@@ -557,10 +557,12 @@
 
       tbody.innerHTML = inquiries.map(item => `
         <tr id="row_${item.id}">
-          <td><strong>${item.name}</strong></td>
-          <td><a href="mailto:${item.email}" style="color: #ff5500; font-weight: 600;">${item.email}</a></td>
-          <td><strong style="color: #ffffff;">${item.service}</strong></td>
-          <td style="max-width: 320px; line-height: 1.5; color: #e4e4e7;">${item.message}</td>
+          <td><strong style="color: #ffffff; font-size: 1rem;">${item.name}</strong></td>
+          <td><a href="mailto:${item.email}" style="color: #ff5500; font-weight: 600; text-decoration: underline;">${item.email}</a></td>
+          <td><strong style="color: #ffffff; font-size: 0.9rem;">${item.service}</strong></td>
+          <td style="max-width: 420px; line-height: 1.6; color: #ffffff; font-weight: 500; background: rgba(255, 85, 0, 0.05); border-left: 3px solid #ff5500; padding: 14px 18px; border-radius: 4px;">
+            ${item.message}
+          </td>
           <td style="color: #a1a1aa; font-size: 0.88rem;">${item.date}</td>
           <td>
             <div class="btn-action-group">
