@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABIL ANANDAN | PORTFOLIO CONTROL PANEL</title>
+  <title>ABIL ANANDAN | PORTFOLIO ADMIN CONTROL PANEL</title>
   <meta name="robots" content="noindex, nofollow">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,15 +13,19 @@
   
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Ultra-readable Admin Panel High-Contrast Styling */
+    /* Ultra-High Contrast Fully-Functional Admin Panel */
     body {
-      background-color: #060608;
-      color: #ffffff;
+      background-color: #060608 !important;
+      color: #ffffff !important;
+      font-family: 'Plus Jakarta Sans', sans-serif;
     }
     .admin-header {
       background: #0d0d12;
       border-bottom: 2px solid #ff5500;
-      padding: 18px 0;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     .admin-nav-wrap {
       display: flex;
@@ -34,78 +38,45 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
     }
     .admin-badge {
       background: #ff5500;
       color: #000000;
       font-weight: 800;
       font-size: 0.75rem;
-      padding: 4px 10px;
+      padding: 4px 12px;
       border-radius: 4px;
+      letter-spacing: 0.05em;
     }
     .admin-card {
       background: #111116;
       border: 1px solid #2a2a35;
       border-radius: 12px;
-      padding: 28px;
+      padding: 30px;
       margin-bottom: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
     }
     .admin-card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       border-bottom: 1px solid #22222d;
-      padding-bottom: 14px;
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .admin-card-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: #ff5500;
-      font-family: var(--font-heading);
+      font-family: 'Space Grotesk', sans-serif;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-    }
-    .admin-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-    .admin-table th {
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      color: #ff5500;
-      background: #181822;
-      padding: 14px 18px;
-      border-bottom: 2px solid #2a2a38;
-    }
-    .admin-table td {
-      padding: 16px 18px;
-      border-bottom: 1px solid #1f1f2a;
-      font-size: 0.95rem;
-      color: #ffffff;
-    }
-    .admin-table tr:hover {
-      background: #161620;
-    }
-    .status-tag {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 4px;
-      display: inline-block;
-    }
-    .status-new {
-      background: rgba(0, 255, 136, 0.15);
-      color: #00ff88;
-      border: 1px solid #00ff88;
-    }
-    .status-pending {
-      background: rgba(255, 170, 0, 0.15);
-      color: #ffaa00;
-      border: 1px solid #ffaa00;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .stat-box-grid {
       display: grid;
@@ -124,31 +95,186 @@
       box-shadow: 0 0 20px rgba(255, 85, 0, 0.15);
     }
     .stat-icon {
-      width: 50px;
-      height: 50px;
+      width: 54px;
+      height: 54px;
       background: #ff5500;
       color: #000;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
     }
     .stat-val {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
       font-weight: 700;
       color: #ffffff;
     }
     .stat-name {
-      font-family: var(--font-heading);
-      font-size: 0.75rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
       color: #a1a1aa;
       text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Table styling with high contrast */
+    .admin-table-wrap {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid #22222d;
+    }
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      min-width: 900px;
+    }
+    .admin-table th {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ff5500;
+      background: #181824;
+      padding: 16px 20px;
+      border-bottom: 2px solid #ff5500;
+    }
+    .admin-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid #1f1f2d;
+      font-size: 1rem;
+      color: #ffffff;
+      vertical-align: middle;
+    }
+    .admin-table tr {
+      transition: background 0.2s ease;
+    }
+    .admin-table tr:hover {
+      background: #161622;
+    }
+
+    /* Action buttons */
+    .btn-action-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-delete {
+      background: rgba(255, 59, 48, 0.15);
+      color: #ff453a;
+      border: 1px solid #ff453a;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-delete:hover {
+      background: #ff453a;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 69, 58, 0.5);
+    }
+
+    .btn-reply {
+      background: rgba(255, 85, 0, 0.15);
+      color: #ff5500;
+      border: 1px solid #ff5500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-reply:hover {
+      background: #ff5500;
+      color: #000000;
+      box-shadow: 0 0 12px rgba(255, 85, 0, 0.5);
+    }
+
+    .status-badge {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .status-active {
+      background: rgba(0, 255, 136, 0.15);
+      color: #00ff88;
+      border: 1px solid #00ff88;
+    }
+    .status-hidden {
+      background: rgba(161, 161, 170, 0.15);
+      color: #a1a1aa;
+      border: 1px solid #a1a1aa;
+    }
+
+    /* Interactive Modal */
+    .admin-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .admin-modal.active {
+      display: flex;
+    }
+    .admin-modal-box {
+      background: #111116;
+      border: 2px solid #ff5500;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      padding: 30px;
+      box-shadow: 0 0 40px rgba(255, 85, 0, 0.3);
+    }
+
+    /* Notification toast */
+    .toast-notify {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #ff5500;
+      color: #000000;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      padding: 14px 24px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(255, 85, 0, 0.4);
+      display: none;
+      z-index: 3000;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
+
+  <!-- Toast Notification -->
+  <div id="toastNotify" class="toast-notify"></div>
 
   <!-- Admin Header -->
   <header class="admin-header">
@@ -158,20 +284,24 @@
         <span>ABIL ANANDAN</span>
         <span class="admin-badge">ADMIN CONTROL PANEL</span>
       </div>
-      <div>
-        <a href="index.html" class="btn btn-secondary btn-sm" style="color: #ffffff; border-color: #ff5500;">
+      <div style="display: flex; gap: 12px;">
+        <button id="btnAddTestMsg" class="btn btn-secondary btn-sm" style="color: #00ff88; border-color: #00ff88;">
+          <i class="fa-solid fa-plus"></i>
+          <span>ADD TEST MESSAGE</span>
+        </button>
+        <a href="index.html" class="btn btn-primary btn-sm">
           <i class="fa-solid fa-arrow-left"></i>
-          <span>VIEW LIVE PORTFOLIO</span>
+          <span>VIEW LIVE WEBSITE</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Admin Main Section -->
+  <!-- Admin Main Content -->
   <main class="section">
     <div class="container">
 
-      <!-- Stat Boxes -->
+      <!-- Stat Cards -->
       <div class="stat-box-grid">
         <div class="stat-box">
           <div class="stat-icon"><i class="fa-solid fa-eye"></i></div>
@@ -184,7 +314,7 @@
         <div class="stat-box">
           <div class="stat-icon"><i class="fa-solid fa-inbox"></i></div>
           <div>
-            <div class="stat-val">14</div>
+            <div class="stat-val" id="statInquiryCount">3</div>
             <div class="stat-name">INCOMING INQUIRIES</div>
           </div>
         </div>
@@ -192,7 +322,7 @@
         <div class="stat-box">
           <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
           <div>
-            <div class="stat-val">4</div>
+            <div class="stat-val" id="statProjectCount">4</div>
             <div class="stat-name">FEATURED PROJECTS</div>
           </div>
         </div>
@@ -206,109 +336,60 @@
         </div>
       </div>
 
-      <!-- Messages Inbox -->
+      <!-- Section 1: Inquiries Inbox & Messages -->
       <div class="admin-card">
         <div class="admin-card-header">
-          <h3 class="admin-card-title"><i class="fa-solid fa-envelope icon-orange"></i> RECENT CLIENT INQUIRIES & MESSAGES</h3>
-          <span style="color: #a1a1aa; font-size: 0.85rem; font-family: var(--font-heading);">HIGH READABILITY INBOX</span>
+          <h3 class="admin-card-title">
+            <i class="fa-solid fa-envelope"></i>
+            INCOMING CLIENT MESSAGES & INQUIRIES
+          </h3>
+          <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
+            <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
+          </button>
         </div>
 
-        <div style="overflow-x: auto;">
+        <div class="admin-table-wrap">
           <table class="admin-table">
             <thead>
               <tr>
-                <th>STATUS</th>
                 <th>CLIENT NAME</th>
                 <th>EMAIL ADDRESS</th>
                 <th>SERVICE REQUESTED</th>
-                <th>PROJECT DETAILS</th>
+                <th>MESSAGE DETAILS</th>
                 <th>DATE RECEIVED</th>
-                <th>ACTION</th>
+                <th>ACTIONS</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><span class="status-tag status-new">NEW INQUIRY</span></td>
-                <td><strong>Alex Morgan</strong></td>
-                <td><a href="mailto:alex@brandstudio.com" style="color: #ff5500; font-weight: 600;">alex@brandstudio.com</a></td>
-                <td><strong style="color: #ffffff;">BRAND IDENTITY & GUIDELINES</strong></td>
-                <td>Looking for a complete brand identity refresh with black and orange color tokens.</td>
-                <td style="color: #a1a1aa;">AUG 08, 2026</td>
-                <td>
-                  <a href="mailto:alex@brandstudio.com" class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 0.75rem;">REPLY</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td><span class="status-tag status-new">NEW INQUIRY</span></td>
-                <td><strong>Devin Thorne</strong></td>
-                <td><a href="mailto:devin@cybernode.io" style="color: #ff5500; font-weight: 600;">devin@cybernode.io</a></td>
-                <td><strong style="color: #ffffff;">FULL STACK CODING / WEB APP</strong></td>
-                <td>Need a high-performance dark theme dashboard with 3D WebGL animations.</td>
-                <td style="color: #a1a1aa;">AUG 07, 2026</td>
-                <td>
-                  <a href="mailto:devin@cybernode.io" class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 0.75rem;">REPLY</a>
-                </td>
-              </tr>
-
-              <tr>
-                <td><span class="status-tag status-pending">IN REVIEW</span></td>
-                <td><strong>Sarah Lin</strong></td>
-                <td><a href="mailto:sarah@musiclabel.org" style="color: #ff5500; font-weight: 600;">sarah@musiclabel.org</a></td>
-                <td><strong style="color: #ffffff;">PHOTOBOOK & ALBUM COVER PACKAGING</strong></td>
-                <td>Need vinyl album cover design and photobook packaging models.</td>
-                <td style="color: #a1a1aa;">AUG 05, 2026</td>
-                <td>
-                  <a href="mailto:sarah@musiclabel.org" class="btn btn-primary btn-sm" style="padding: 6px 12px; font-size: 0.75rem;">REPLY</a>
-                </td>
-              </tr>
+            <tbody id="inquiriesTableBody">
+              <!-- Dynamically rendered by JavaScript -->
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Portfolio Projects Management -->
+      <!-- Section 2: Portfolio Projects Manager -->
       <div class="admin-card">
         <div class="admin-card-header">
-          <h3 class="admin-card-title"><i class="fa-solid fa-layer-group icon-orange"></i> ACTIVE PORTFOLIO PROJECT CARDS</h3>
-          <span style="color: #a1a1aa; font-size: 0.85rem; font-family: var(--font-heading);">4 ACTIVE CARDS</span>
+          <h3 class="admin-card-title">
+            <i class="fa-solid fa-layer-group"></i>
+            PORTFOLIO SHOWCASE WORKS
+          </h3>
+          <span style="color: #a1a1aa; font-size: 0.85rem; font-family: 'Space Grotesk', sans-serif;">CLICK STATUS TO TOGGLE VISIBILITY</span>
         </div>
 
-        <div style="overflow-x: auto;">
+        <div class="admin-table-wrap">
           <table class="admin-table">
             <thead>
               <tr>
                 <th>PROJECT TITLE</th>
                 <th>CATEGORY</th>
                 <th>EXTERNAL SHOWCASE LINK</th>
-                <th>STATUS</th>
+                <th>VISIBILITY STATUS</th>
+                <th>ACTIONS</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td><strong>AETHER BRAND IDENTITY & GUIDELINES</strong></td>
-                <td>BRANDING</td>
-                <td><span style="color: #a1a1aa;">INTERNAL CASE STUDY</span></td>
-                <td><span class="status-tag status-new">ACTIVE & VISIBLE</span></td>
-              </tr>
-              <tr>
-                <td><strong>NIGHTWATCH CYBER MONITOR DASHBOARD</strong></td>
-                <td>CODING</td>
-                <td><a href="https://github.com/byluckycat" target="_blank" style="color: #ff5500;">GITHUB PROFILE</a></td>
-                <td><span class="status-tag status-new">ACTIVE & VISIBLE</span></td>
-              </tr>
-              <tr>
-                <td><strong>GRAPHIC DESIGN PORTFOLIO ON BEHANCE</strong></td>
-                <td>GRAPHICS</td>
-                <td><a href="https://www.behance.net/abilanandan" target="_blank" style="color: #ff5500;">BEHANCE PORTFOLIO</a></td>
-                <td><span class="status-tag status-new">ACTIVE & VISIBLE</span></td>
-              </tr>
-              <tr>
-                <td><strong>ALBUM COVER MODELS AND PACKAGES</strong></td>
-                <td>GRAPHICS & PACKAGING</td>
-                <td><a href="https://www.flickr.com/photos/199570219@N02/" target="_blank" style="color: #ff5500;">FLICKR GALLERY</a></td>
-                <td><span class="status-tag status-new">ACTIVE & VISIBLE</span></td>
-              </tr>
+            <tbody id="projectsTableBody">
+              <!-- Dynamically rendered by JavaScript -->
             </tbody>
           </table>
         </div>
@@ -317,16 +398,250 @@
     </div>
   </main>
 
-  <!-- Admin Footer -->
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-brand">
-        <span class="logo-box">A</span>
-        <span class="logo-text">ABIL ANANDAN</span>
+  <!-- Interactive Reply Modal -->
+  <div id="replyModal" class="admin-modal">
+    <div class="admin-modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid #22222d; padding-bottom: 12px;">
+        <h3 style="font-family: 'Space Grotesk', sans-serif; color: #ff5500;" id="modalReplyTitle">REPLY TO CLIENT</h3>
+        <button id="closeReplyModal" style="background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer;">&times;</button>
       </div>
-      <p class="footer-copy">© 2026 ABIL ANANDAN — ADMIN CONTROL PANEL.</p>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label style="color: #ff5500; font-family: 'Space Grotesk', sans-serif;">RECIPIENT EMAIL</label>
+        <input type="text" id="replyToEmail" readonly style="background: #181822; color: #ffffff; width: 100%; padding: 12px; border: 1px solid #2a2a38; border-radius: 6px;">
+      </div>
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label style="color: #ff5500; font-family: 'Space Grotesk', sans-serif;">YOUR RESPONSE MESSAGE</label>
+        <textarea id="replyMessageText" rows="5" style="background: #181822; color: #ffffff; width: 100%; padding: 14px; border: 1px solid #ff5500; border-radius: 6px; font-family: inherit; font-size: 0.95rem;">Hi! Thank you for reaching out to Abil Anandan. I have reviewed your requirements and would love to collaborate on your project.</textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 12px;">
+        <button id="cancelReplyBtn" class="btn btn-secondary btn-sm" style="color: #ffffff;">CANCEL</button>
+        <button id="sendReplyBtn" class="btn btn-primary btn-sm">SEND EMAIL RESPONSE</button>
+      </div>
     </div>
-  </footer>
+  </div>
 
+  <!-- Admin Interactive JavaScript Engine -->
+  <script>
+    // Initial Data State with LocalStorage Persistence
+    const defaultInquiries = [
+      {
+        id: 'msg_1',
+        name: 'Alex Morgan',
+        email: 'alex@brandstudio.com',
+        service: 'BRAND IDENTITY & GUIDELINES',
+        message: 'Looking for a complete brand identity refresh with obsidian black and electric orange color tokens. Need vector logo suite and brand book.',
+        date: 'AUG 08, 2026'
+      },
+      {
+        id: 'msg_2',
+        name: 'Devin Thorne',
+        email: 'devin@cybernode.io',
+        service: 'FULL STACK CODING / WEB APP',
+        message: 'Need a high-performance dark theme cyber monitor dashboard with 3D WebGL animations and real-time network node charts.',
+        date: 'AUG 07, 2026'
+      },
+      {
+        id: 'msg_3',
+        name: 'Sarah Lin',
+        email: 'sarah@musiclabel.org',
+        service: 'PHOTOBOOK & ALBUM COVER PACKAGING',
+        message: 'Need vinyl album cover design and photobook packaging models. Please review our Flickr showcase requirements.',
+        date: 'AUG 05, 2026'
+      }
+    ];
+
+    const defaultProjects = [
+      {
+        id: 'proj_1',
+        title: 'AETHER BRAND IDENTITY & GUIDELINES',
+        category: 'BRANDING',
+        link: 'https://byluckycat.github.io/abilanandan.github.io/',
+        linkText: 'CASE STUDY',
+        active: true
+      },
+      {
+        id: 'proj_2',
+        title: 'NIGHTWATCH CYBER MONITOR DASHBOARD',
+        category: 'CODING',
+        link: 'https://github.com/byluckycat',
+        linkText: 'GITHUB REPO',
+        active: true
+      },
+      {
+        id: 'proj_3',
+        title: 'GRAPHIC DESIGN PORTFOLIO ON BEHANCE',
+        category: 'GRAPHICS',
+        link: 'https://www.behance.net/abilanandan',
+        linkText: 'BEHANCE PORTFOLIO',
+        active: true
+      },
+      {
+        id: 'proj_4',
+        title: 'ALBUM COVER MODELS AND PACKAGES',
+        category: 'GRAPHICS & PACKAGING',
+        link: 'https://www.flickr.com/photos/199570219@N02/',
+        linkText: 'FLICKR GALLERY',
+        active: true
+      }
+    ];
+
+    // Load state from localStorage or initialize
+    let inquiries = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || defaultInquiries;
+    let projects = JSON.parse(localStorage.getItem('abil_admin_projects')) || defaultProjects;
+
+    function saveState() {
+      localStorage.setItem('abil_admin_inquiries', JSON.stringify(inquiries));
+      localStorage.setItem('abil_admin_projects', JSON.stringify(projects));
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastNotify');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    // Render Inquiries Table
+    function renderInquiries() {
+      const tbody = document.getElementById('inquiriesTableBody');
+      const countEl = document.getElementById('statInquiryCount');
+      countEl.innerText = inquiries.length;
+
+      if (inquiries.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="6" style="text-align: center; padding: 40px; color: #a1a1aa;">
+              <i class="fa-solid fa-inbox" style="font-size: 2rem; color: #ff5500; margin-bottom: 10px; display: block;"></i>
+              NO INCOMING MESSAGES CURRENTLY. INBOX IS CLEAN!
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = inquiries.map(item => `
+        <tr id="row_${item.id}">
+          <td><strong>${item.name}</strong></td>
+          <td><a href="mailto:${item.email}" style="color: #ff5500; font-weight: 600;">${item.email}</a></td>
+          <td><strong style="color: #ffffff;">${item.service}</strong></td>
+          <td style="max-width: 320px; line-height: 1.5; color: #e4e4e7;">${item.message}</td>
+          <td style="color: #a1a1aa; font-size: 0.88rem;">${item.date}</td>
+          <td>
+            <div class="btn-action-group">
+              <button onclick="openReplyModal('${item.email}', '${item.name}')" class="btn-reply">
+                <i class="fa-solid fa-reply"></i> REPLY
+              </button>
+              <button onclick="deleteInquiry('${item.id}')" class="btn-delete">
+                <i class="fa-solid fa-trash-can"></i> DELETE
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Delete Inquiry Function
+    window.deleteInquiry = function(id) {
+      if (confirm("Are you sure you want to delete this message?")) {
+        inquiries = inquiries.filter(item => item.id !== id);
+        saveState();
+        renderInquiries();
+        showToast("Message deleted successfully!");
+      }
+    };
+
+    // Clear All Messages
+    document.getElementById('btnClearAllMsgs').addEventListener('click', () => {
+      if (inquiries.length === 0) {
+        showToast("Inbox is already empty!");
+        return;
+      }
+      if (confirm("Are you sure you want to clear ALL incoming messages?")) {
+        inquiries = [];
+        saveState();
+        renderInquiries();
+        showToast("All messages cleared!");
+      }
+    });
+
+    // Add Test Message
+    document.getElementById('btnAddTestMsg').addEventListener('click', () => {
+      const newMsg = {
+        id: 'msg_' + Date.now(),
+        name: 'New Client Inquiry',
+        email: 'client_' + Math.floor(Math.random()*1000) + '@designagency.com',
+        service: 'BRANDING & GRAPHIC ART',
+        message: 'Interested in working with Abil Anandan for custom photo packaging and graphic design.',
+        date: new Date().toLocaleDateString('en-US', { month: 'SHORT', day: 'numeric', year: 'numeric' }).toUpperCase()
+      };
+      inquiries.unshift(newMsg);
+      saveState();
+      renderInquiries();
+      showToast("New test inquiry added!");
+    });
+
+    // Render Projects Table
+    function renderProjects() {
+      const tbody = document.getElementById('projectsTableBody');
+      const countEl = document.getElementById('statProjectCount');
+      countEl.innerText = projects.filter(p => p.active).length;
+
+      tbody.innerHTML = projects.map(p => `
+        <tr>
+          <td><strong>${p.title}</strong></td>
+          <td><span style="color: #ff5500; font-family: 'Space Grotesk', sans-serif; font-weight: 700;">${p.category}</span></td>
+          <td><a href="${p.link}" target="_blank" style="color: #ff5500; font-weight: 600;">${p.linkText} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem;"></i></a></td>
+          <td>
+            <span onclick="toggleProjectStatus('${p.id}')" class="status-badge ${p.active ? 'status-active' : 'status-hidden'}">
+              <i class="fa-solid ${p.active ? 'fa-eye' : 'fa-eye-slash'}"></i> ${p.active ? 'ACTIVE & VISIBLE' : 'HIDDEN'}
+            </span>
+          </td>
+          <td>
+            <button onclick="toggleProjectStatus('${p.id}')" class="btn-reply" style="font-size: 0.75rem;">
+              <i class="fa-solid fa-sliders"></i> TOGGLE
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.toggleProjectStatus = function(id) {
+      const proj = projects.find(p => p.id === id);
+      if (proj) {
+        proj.active = !proj.active;
+        saveState();
+        renderProjects();
+        showToast(`Project visibility set to ${proj.active ? 'VISIBLE' : 'HIDDEN'}`);
+      }
+    };
+
+    // Reply Modal Handlers
+    window.openReplyModal = function(email, name) {
+      document.getElementById('replyToEmail').value = email;
+      document.getElementById('modalReplyTitle').innerText = `REPLY TO ${name.toUpperCase()}`;
+      document.getElementById('replyModal').classList.add('active');
+    };
+
+    document.getElementById('closeReplyModal').addEventListener('click', () => {
+      document.getElementById('replyModal').classList.remove('active');
+    });
+    document.getElementById('cancelReplyBtn').addEventListener('click', () => {
+      document.getElementById('replyModal').classList.remove('active');
+    });
+
+    document.getElementById('sendReplyBtn').addEventListener('click', () => {
+      const email = document.getElementById('replyToEmail').value;
+      const body = document.getElementById('replyMessageText').value;
+      window.location.href = `mailto:${email}?subject=Response from Abil Anandan&body=${encodeURIComponent(body)}`;
+      document.getElementById('replyModal').classList.remove('active');
+      showToast("Email client opened for reply!");
+    });
+
+    // Initial load
+    renderInquiries();
+    renderProjects();
+  </script>
 </body>
 </html>
