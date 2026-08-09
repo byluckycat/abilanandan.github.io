@@ -284,11 +284,7 @@
         <span>ABIL ANANDAN</span>
         <span class="admin-badge">ADMIN CONTROL PANEL</span>
       </div>
-      <div style="display: flex; gap: 12px;">
-        <button id="btnAddTestMsg" class="btn btn-secondary btn-sm" style="color: #00ff88; border-color: #00ff88;">
-          <i class="fa-solid fa-plus"></i>
-          <span>ADD TEST MESSAGE</span>
-        </button>
+      <div>
         <a href="index.html" class="btn btn-primary btn-sm">
           <i class="fa-solid fa-arrow-left"></i>
           <span>VIEW LIVE WEBSITE</span>
@@ -556,14 +552,6 @@
       }
     };
 
-    // Restore Demo Messages
-    document.getElementById('btnRestoreDemoMsgs').addEventListener('click', () => {
-      inquiries = [...defaultInquiries];
-      saveState();
-      renderInquiries();
-      showToast("Demo messages restored to Inbox!");
-    });
-
     // Clear All Messages
     document.getElementById('btnClearAllMsgs').addEventListener('click', () => {
       if (inquiries.length === 0) {
@@ -576,22 +564,6 @@
         renderInquiries();
         showToast("All messages cleared!");
       }
-    });
-
-    // Add Test Message
-    document.getElementById('btnAddTestMsg').addEventListener('click', () => {
-      const newMsg = {
-        id: 'msg_' + Date.now(),
-        name: 'New Client Inquiry',
-        email: 'client_' + Math.floor(Math.random()*1000) + '@designagency.com',
-        service: 'BRANDING & GRAPHIC ART',
-        message: 'Interested in working with Abil Anandan for custom photo packaging and graphic design.',
-        date: new Date().toLocaleDateString('en-US', { month: 'SHORT', day: 'numeric', year: 'numeric' }).toUpperCase()
-      };
-      inquiries.unshift(newMsg);
-      saveState();
-      renderInquiries();
-      showToast("New test inquiry added!");
     });
 
     // Render Projects Table
