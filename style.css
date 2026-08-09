@@ -999,16 +999,17 @@ img {
 
 /* 11. CONTACT SECTION */
 .contact-grid {
-  display: grid;
-  grid-template-columns: 0.7fr 1.3fr;
-  gap: 36px;
+  display: flex;
+  justify-content: center;
 }
 
-.contact-info-card, .contact-form-card {
+.contact-info-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 36px;
+  padding: 40px;
+  max-width: 720px;
+  width: 100%;
 }
 
 .contact-info-card p {
