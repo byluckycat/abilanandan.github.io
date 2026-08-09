@@ -208,17 +208,15 @@ img {
 }
 
 .logo-box {
-  padding: 0 12px;
-  min-width: 48px;
+  width: 38px;
   height: 38px;
   background: var(--orange-primary);
   color: #000;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
+  font-size: 1.2rem;
   border-radius: var(--radius-sm);
   box-shadow: 0 0 15px var(--orange-glow);
 }
