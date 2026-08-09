@@ -343,9 +343,14 @@
             <i class="fa-solid fa-envelope"></i>
             INCOMING CLIENT MESSAGES & INQUIRIES
           </h3>
-          <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
-            <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
-          </button>
+          <div style="display: flex; gap: 10px;">
+            <button id="btnRestoreDemoMsgs" class="btn-reply" style="font-size: 0.75rem;">
+              <i class="fa-solid fa-rotate-left"></i> RESTORE DEMO MESSAGES
+            </button>
+            <button id="btnClearAllMsgs" class="btn-delete" style="font-size: 0.75rem;">
+              <i class="fa-solid fa-trash-can"></i> CLEAR ALL MESSAGES
+            </button>
+          </div>
         </div>
 
         <div class="admin-table-wrap">
@@ -485,9 +490,20 @@
       }
     ];
 
-    // Load state from localStorage or initialize
-    let inquiries = JSON.parse(localStorage.getItem('abil_admin_inquiries')) || defaultInquiries;
-    let projects = JSON.parse(localStorage.getItem('abil_admin_projects')) || defaultProjects;
+    // Load state from localStorage or initialize defaults
+    let rawInquiries = localStorage.getItem('abil_admin_inquiries');
+    let inquiries = rawInquiries ? JSON.parse(rawInquiries) : null;
+    if (!inquiries || inquiries.length === 0) {
+      inquiries = [...defaultInquiries];
+      localStorage.setItem('abil_admin_inquiries', JSON.stringify(inquiries));
+    }
+
+    let rawProjects = localStorage.getItem('abil_admin_projects');
+    let projects = rawProjects ? JSON.parse(rawProjects) : null;
+    if (!projects || projects.length === 0) {
+      projects = [...defaultProjects];
+      localStorage.setItem('abil_admin_projects', JSON.stringify(projects));
+    }
 
     function saveState() {
       localStorage.setItem('abil_admin_inquiries', JSON.stringify(inquiries));
@@ -551,6 +567,14 @@
         showToast("Message deleted successfully!");
       }
     };
+
+    // Restore Demo Messages
+    document.getElementById('btnRestoreDemoMsgs').addEventListener('click', () => {
+      inquiries = [...defaultInquiries];
+      saveState();
+      renderInquiries();
+      showToast("Demo messages restored to Inbox!");
+    });
 
     // Clear All Messages
     document.getElementById('btnClearAllMsgs').addEventListener('click', () => {
